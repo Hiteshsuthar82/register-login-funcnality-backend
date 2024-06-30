@@ -13,7 +13,7 @@ const app = require("./app");
 
 // DATABASE CONNECTION
 mongoose
-  .connect(process.env.LOCAL_CON_STR, { useNewUrlParser: true })
+  .connect(process.env.CON_STR, { useNewUrlParser: true })
   .then((con) => {
     console.log(`DB Connection Successfull`);
   });
