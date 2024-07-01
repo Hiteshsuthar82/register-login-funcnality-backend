@@ -20,7 +20,7 @@ const createSendResponce = (user, statusCode, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Use Lax or Strict for local development and none for secure true
-    domain: 'register-login-funcnality-frontend.vercel.app',
+    domain: .vercel.app,
   };
 
   res.cookie("jwt", token, options);
