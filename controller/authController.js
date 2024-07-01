@@ -16,10 +16,12 @@ const createSendResponce = (user, statusCode, res) => {
   const token = signToken(user._id);
 
   const options = {
+    domain: "https://register-login-funcnality-frontend.vercel.app",
     maxAge: 1000000,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Use Lax or Strict for local development and none for secure true
+    
   };
 
   res.cookie("jwt", token, options);
@@ -124,11 +126,10 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
 exports.logout = asyncErrorHandler(async (req, res, next) => {
   res.clearCookie("jwt", "", {
-    domain: "127.0.0.1",
+    domain: "https://register-login-funcnality-frontend.vercel.app",
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // matches the secure setting used when setting the cookie
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict", // matches the sameSite setting used when setting the cookie
-    expires: new Date(0),
   });
 
   res.status(200).json({
