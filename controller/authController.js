@@ -16,7 +16,6 @@ const createSendResponce = (user, statusCode, res) => {
   const token = signToken(user._id);
 
   const options = {
-    domain: "https://register-login-funcnality-frontend.vercel.app",
     maxAge: 1000000,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
