@@ -18,18 +18,12 @@ const createSendResponce = (user, statusCode, res) => {
   const options = {
     maxAge: 1000000,
     httpOnly: true,
-    secure: false,
-    sameSite: "Strict", // Use Lax or Strict for local development and none for secure true
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Use Lax or Strict for local development and none for secure true
   };
-
-  if (process.env.NODE_ENV == "production") {
-    (options.sameSite = "None"), (options.secure = true);
-  }
 
   res.cookie("jwt", token, options);
   
-  console.log(options.secure, options.sameSite);
-
   user.password = undefined;
 
   res.status(statusCode).json({
@@ -92,7 +86,6 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
     return;
   }
 
-  // console.log(user.createResetPasswordToken());
   const resetToken = user.createResetPasswordToken();
   console.log(resetToken);
   await user.save({ validateBeforeSave: false });
@@ -146,6 +139,7 @@ exports.logout = asyncErrorHandler(async (req, res, next) => {
 
 exports.protect = asyncErrorHandler(async (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(`token from req.cookie.jwt : ${token}`);
 
   const decodedToken = await util.promisify(jwt.verify)(
     token,
