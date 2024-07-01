@@ -9,7 +9,7 @@ let app = express();
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "https://hiteshsuthar82.github.io",
+  origin: "https://register-login-funcnality-frontend.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 };
