@@ -25,7 +25,7 @@ const createSendResponce = (user, statusCode, res) => {
   if (process.env.NODE_ENV == "production") {
     (options.sameSite = "None"), (options.secure = true);
   }
-  console.log(process.env.NODE_ENV == "production"))
+  console.log(process.env.NODE_ENV == "production");
 
   res.cookie("jwt", token, options);
 
