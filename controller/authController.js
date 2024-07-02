@@ -19,7 +19,7 @@ const createSendResponce = (user, statusCode, res) => {
     maxAge: 1000000,
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict", // Use Lax or Strict for local development and none for secure true
+    sameSite: "None", // Use Lax or Strict for local development and none for secure true
   };
 
   res.cookie("jwt", token, options);
@@ -126,7 +126,7 @@ exports.logout = asyncErrorHandler(async (req, res, next) => {
   res.clearCookie("jwt", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // matches the secure setting used when setting the cookie
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict", // matches the sameSite setting used when setting the cookie
+    sameSite: "None", // matches the sameSite setting used when setting the cookie
   });
 
   res.status(200).json({
