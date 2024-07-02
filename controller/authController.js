@@ -20,10 +20,6 @@ const createSendResponce = (user, statusCode, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict", // Use Lax or Strict for local development and none for secure true
-    domain:
-      process.env.NODE_ENV === "production"
-        ? "register-login-funcnality-frontend.vercel.app"
-        : "127.0.0.1",
   };
 
   res.cookie("jwt", token, options);
@@ -131,10 +127,6 @@ exports.logout = asyncErrorHandler(async (req, res, next) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // matches the secure setting used when setting the cookie
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict", // matches the sameSite setting used when setting the cookie
-    domain:
-      process.env.NODE_ENV === "production"
-        ? "register-login-funcnality-frontend.vercel.app"
-        : "127.0.0.1",
   });
 
   res.status(200).json({
