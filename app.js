@@ -9,7 +9,10 @@ let app = express();
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "https://register-login-funcnality-frontend.vercel.app",
+  origin:
+    process.env.NODE_ENV == "production"
+      ? "https://register-login-funcnality-frontend.vercel.app"
+      : "http://127.0.0.1:5500",
   credentials: true,
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 };
