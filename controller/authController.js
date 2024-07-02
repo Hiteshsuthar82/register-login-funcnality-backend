@@ -123,7 +123,7 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.logout = asyncErrorHandler(async (req, res, next) => {
-  res.clearCookie("jwt", "", {
+  res.clearCookie("jwt", {
     httpOnly: true,
     secure: true || process.env.NODE_ENV === "production", // matches the secure setting used when setting the cookie
     sameSite: "None", // matches the sameSite setting used when setting the cookie
