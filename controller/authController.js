@@ -159,6 +159,14 @@ exports.protect = asyncErrorHandler(async (req, res, next) => {
   next();
 });
 
+exports.userValid = asyncErrorHandler(async (req, res, next) => {
+  res.status(200).json({
+    status:'success',
+    message:'you are valid user OR Loged in user'
+  })
+});
+
+
 exports.getAllUsers = asyncErrorHandler(async (req, res, next) => {
   const users = await User.find();
 
